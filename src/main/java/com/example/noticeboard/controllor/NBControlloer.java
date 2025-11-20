@@ -25,4 +25,24 @@ public class NBControlloer {
     public List<NorticeBoard> getAllNotices() {
         return norticeBoardRepository.findAll(); // 주입된 Repository 사용
     }
+
+    @GetMapping("/{id}")
+    public NorticeBoard getNorticeBoardById(@PathVariable int id) {
+        return norticeBoardRepository.findById(id).get();
+    }
+
+    @PutMapping("/{id}")
+    public NorticeBoard updateNortice(@PathVariable int id, @RequestBody CreatNorticeBoardRequest dto) {
+        return nRService.updateNorticeBoard(id, dto.getTitle(), dto.getContent());
+    }
+
+
+    @DeleteMapping("/{id}")
+    public String deleteNorticeBoard(@PathVariable int id) {
+        boolean deleted = nRService.deleteNorticeBoard(id);
+        return deleted ? "삭제 성공" : "삭제 실패: 해당 ID 없음";
+    }
+
+
 }
+
