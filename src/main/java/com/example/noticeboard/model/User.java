@@ -14,19 +14,16 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 
-public class NorticeBoard {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private String title;
-    private String content;
+    private String username;
+    private String password;
 
-    public void update(String title, String content) {
-        this.title = title;
-        this.content = content;
+    public void update(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
-
-
-
 }

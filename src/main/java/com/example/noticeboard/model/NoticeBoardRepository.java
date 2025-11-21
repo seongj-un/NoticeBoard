@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface NorticeBoardRepository extends JpaRepository<NorticeBoard, Integer> {
+public interface NoticeBoardRepository extends JpaRepository<NoticeBoard, Integer> {
 }
