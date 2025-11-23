@@ -6,7 +6,7 @@ spring:
     name: NoticeBoard
 
   datasource:
-    url: jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&connectionCollation=utf8mb4_general_ci
+    url: jdbc:mysql://localhost:3306/new_schema?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&connectionCollation=utf8mb4_general_ci
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

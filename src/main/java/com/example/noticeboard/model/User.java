@@ -1,10 +1,12 @@
 package com.example.noticeboard.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -15,6 +17,7 @@ import lombok.*;
 @Builder
 
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +25,18 @@ public class User {
     private String username;
     private String password;
 
-    public void update(String username, String password) {
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+    private List<NoticeBoard> noticeBoards = new ArrayList<>();
+
+
+    public void Update(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public void addNoticeBoard(NoticeBoard noticeBoard) {
+        noticeBoards.add(noticeBoard);
+        noticeBoard.setUser(this);  // NoticeBoard.user 필드 세팅
     }
 }

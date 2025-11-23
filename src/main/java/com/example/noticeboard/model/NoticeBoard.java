@@ -1,9 +1,7 @@
 package com.example.noticeboard.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -13,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class NoticeBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +18,10 @@ public class NoticeBoard {
 
     private String title;
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public void update(String title, String content) {
         this.title = title;

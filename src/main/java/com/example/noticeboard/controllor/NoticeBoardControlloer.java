@@ -3,6 +3,7 @@ package com.example.noticeboard.controllor;
 import com.example.noticeboard.dto.CreatNoticeBoardRequest;
 import com.example.noticeboard.model.NoticeBoard;
 import com.example.noticeboard.Service.NoticeBoardService;
+import com.example.noticeboard.model.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,9 @@ public class NoticeBoardControlloer {
 
     private final NoticeBoardService nRService;
 
-    @PostMapping
-    public NoticeBoard createNorticeBoard(@RequestBody CreatNoticeBoardRequest dto) {
-        return nRService.createNorticeBoard(dto.getTitle(), dto.getContent());
+    @PostMapping("/{user_id}")
+    public NoticeBoard createNorticeBoard(@PathVariable Long user_id ,@RequestBody CreatNoticeBoardRequest dto) {
+        return nRService.createNorticeBoard(user_id,dto.getTitle(), dto.getContent());
     }
 
     @GetMapping

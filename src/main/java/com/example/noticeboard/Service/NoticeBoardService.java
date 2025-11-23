@@ -2,6 +2,8 @@ package com.example.noticeboard.Service;
 
 import com.example.noticeboard.model.NoticeBoard;
 import com.example.noticeboard.model.NoticeBoardRepository;
+import com.example.noticeboard.model.User;
+import com.example.noticeboard.model.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +14,15 @@ import java.util.List;
 public class NoticeBoardService {
 
     private final NoticeBoardRepository noticeBoardRepository;
+    private final UserRepository userRepository;
 
-    public NoticeBoard createNorticeBoard(String title, String content) {
+    public NoticeBoard createNorticeBoard(Long user_id,String title, String content) {
+        User user = userRepository.findById(user_id).orElse(null);
+
         NoticeBoard noticeBoard = NoticeBoard.builder()
                 .title(title)
                 .content(content)
+                .user(user)
                 .build();
 
         return noticeBoardRepository.save(noticeBoard);

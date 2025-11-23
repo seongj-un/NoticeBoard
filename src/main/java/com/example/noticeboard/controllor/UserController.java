@@ -19,20 +19,18 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable long id) {
-        return userService.getUserId(id);
+    public User getUser(@PathVariable Long id) {
+        return userService.getUserByid(id);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable long id ,@RequestBody CreateUserRequest dto) {
-    return userService.updateUser(id, dto.getUsername(), dto.getPassword());
+    public User updateUser(@PathVariable Long id, @RequestBody CreateUserRequest dto) {
+        return userService.UpdateUser(id,dto.getUsername(),dto.getPassword());
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable long id) {
-        boolean delete =userService.deleteuser(id);
-        return delete ? "삭제 성공" : "삭제 실패: 해당 ID 없음";
+    public String deleteUser(@PathVariable Long id) {
+        boolean result = userService.deleteUser(id);
+        return result ? "유저 삭제 성공" : "유저 삭제 실패";
     }
-
-
 }
